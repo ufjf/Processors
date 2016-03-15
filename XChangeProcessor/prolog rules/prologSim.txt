@@ -1,0 +1,19 @@
+match(NAME):-
+    employee(before,EMPLOYEEBefore),
+    employee(after,EMPLOYEEAfter),
+    xchangeid(EMPLOYEEBefore, _, XID),
+    xchangeid(EMPLOYEEAfter, _, XID),
+    name(EMPLOYEEBefore, _, NAME),
+    name(EMPLOYEEBefore, _, NAMEBefore),
+    name(EMPLOYEEAfter, _, NAMEAfter),
+    NAMEBefore==NAMEAfter.
+
+no_match(NAME):-
+    employee(before,EMPLOYEEBefore),
+    employee(after,EMPLOYEEAfter),
+    xchangeid(EMPLOYEEBefore, _, XID),
+    xchangeid(EMPLOYEEAfter, _, XID),
+    name(EMPLOYEEBefore, _, NAME),
+    name(EMPLOYEEBefore, _, NAMEBefore),
+    name(EMPLOYEEAfter, _, NAMEAfter),
+    NAMEBefore\=NAMEAfter.

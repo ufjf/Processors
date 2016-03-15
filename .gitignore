@@ -1,0 +1,29 @@
+#ant specific
+dist/
+build/
+
+#netbeans specific
+core
+XChangeProcessor/nbproject/*
+!XChangeProcessor/nbproject/project.properties
+!XChangeProcessor/nbproject/project.xml
+
+XDiffProcessor/nbproject/*
+!XDiffProcessor/nbproject/project.properties
+!XDiffProcessor/nbproject/project.xml
+
+XYDiff/nbproject/*
+!XYDiff/nbproject/project.properties
+!XYDiff/nbproject/project.xml
+
+#java specific
+*.class
+
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock

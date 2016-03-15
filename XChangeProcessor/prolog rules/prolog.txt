@@ -1,0 +1,9 @@
+match(NAME):-
+    employee(before,EMPLOYEEBefore),
+    employee(after,EMPLOYEEAfter),
+    name(EMPLOYEEBefore, _, NAME),
+    name(EMPLOYEEAfter, _, NAME),
+    name(EMPLOYEEBefore, _, NAME),
+    name(EMPLOYEEBefore, _, NAMEBefore),
+    name(EMPLOYEEAfter, _, NAMEAfter),
+    NAMEBefore==NAMEAfter.
