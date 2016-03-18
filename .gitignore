@@ -12,9 +12,9 @@ XDiffProcessor/nbproject/*
 !XDiffProcessor/nbproject/project.properties
 !XDiffProcessor/nbproject/project.xml
 
-XYDiff/nbproject/*
-!XYDiff/nbproject/project.properties
-!XYDiff/nbproject/project.xml
+XYDiffProcessor/nbproject/*
+!XYDiffProcessor/nbproject/project.properties
+!XYDiffProcessor/nbproject/project.xml
 
 #java specific
 *.class
