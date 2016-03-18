@@ -126,7 +126,7 @@ public class Main {
                 timeFile.append((System.currentTimeMillis() - starTime)).append("\n");
 
                 //Conversor
-                
+                System.out.println("Fazendo conversão");
                 String convertXY = saveLocation.getAbsolutePath() + separator + "resultadoModificadoXyDiff.xml";
                 String resultadoNovo = saveLocation.getAbsolutePath() + separator + "resultNovo.xml";
                 String graoGrosso = saveLocation.getAbsolutePath() + separator + "CasamentoGraoGrossoXyDiff.txt";
