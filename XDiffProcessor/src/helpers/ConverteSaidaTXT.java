@@ -51,7 +51,11 @@ public class ConverteSaidaTXT {
                 } else if (!"UPDATE".equals(eElement.getElementsByTagName(chave).item(0).getLastChild().getNodeName())) {
                     this.casamentoCorreto.add(eElement.getElementsByTagName(chave).item(0).getTextContent());
                 } else if ("UPDATE".equals(eElement.getElementsByTagName(chave).item(0).getLastChild().getNodeName())) {
-                    this.casamentoErrado.add(eElement.getElementsByTagName(chave).item(0).getTextContent());
+                    String v1Name = eElement.getElementsByTagName(chave).item(0).getChildNodes().item(1).getTextContent();
+                    v1Name = v1Name.replaceFirst("FROM \"", "");
+                    v1Name = v1Name.substring(0,v1Name.lastIndexOf("\""));
+                    
+                    this.casamentoErrado.add(v1Name);
                 }
             }
         }
