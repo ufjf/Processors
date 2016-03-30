@@ -187,7 +187,12 @@ public class ConverteSaidaTXT {
                         if(eElement.getChildNodes().item(i).getChildNodes().item(1).getNodeName().equals("UPDATEINCORRETO") ||
                                 eElement.getChildNodes().item(i).getChildNodes().item(1).getNodeName().equals("MOVEFALTANDO") ||
                                 eElement.getChildNodes().item(i).getChildNodes().item(1).getNodeName().equals("MOVEINCORRETO")){
-                            casamentoErrado.add(eElement.getChildNodes().item(posChave).getTextContent());
+                            
+                            if(eElement.getChildNodes().item(posChave).getChildNodes().getLength() > 1) {
+                                casamentoErrado.add(eElement.getChildNodes().item(posChave).getChildNodes().item(1).getAttributes().item(0).getTextContent());
+                            } else
+                                casamentoErrado.add(eElement.getChildNodes().item(posChave).getTextContent());
+                            
                             break;
                         }
                     }
