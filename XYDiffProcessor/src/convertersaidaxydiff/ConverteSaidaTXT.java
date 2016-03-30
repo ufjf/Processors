@@ -464,6 +464,8 @@ public class ConverteSaidaTXT {
                 }
             }
             
+            /*
+            REMOVIDO POIS NAO EH UTILIZADO, DEU RESULTADO ERRADO APOS COLOCAR AS CHAVES DE V1 NO CASAMENTO ERRADO (ANTES USAVA V2)
             bw.newLine();
             bw.write("Não Casou");
             bw.newLine();
@@ -473,7 +475,7 @@ public class ConverteSaidaTXT {
                     bw.newLine();
                 }
             }
-            
+            */
             bw.close();
             System.out.println("CasamentoGraoFino.txt gerado com Sucesso!");
             System.out.println("CasamentoGraoGrosso.txt gerado com Sucesso!");
