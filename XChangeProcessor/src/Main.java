@@ -153,7 +153,7 @@ public class Main {
             
             if (argIndex == 0 ) { // run all
                 startIndex = 1;
-                endIndex = documents.size()- 1;
+                endIndex = documents.size();
                 startThreshold = 0.0d;
                 endThreshold = 1.0;
             } else { // run especific case
