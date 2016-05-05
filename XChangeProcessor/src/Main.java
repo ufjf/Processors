@@ -192,6 +192,7 @@ public class Main {
                     System.out.println("Executando: "+ v1.getName()+" - "+ v2.getName()+" (Index: "+i+")");
                     HashMap<String, String> output = new HashMap<String, String>();
                     File saveFile, saveTimeFile;
+                    StringBuilder timeFile = new StringBuilder();
                     Long starTime = System.currentTimeMillis();
                     
                     if (useSimilarity) {
@@ -203,6 +204,8 @@ public class Main {
                         System.out.println("Calculando Similaridade(Threshold: "+SettingsHelper.getSimilarityThreshold()+")...");
                         String simDiff = doSimilarity(v1.getAbsolutePath(), v2.getAbsolutePath());
 
+                        timeFile.append((System.currentTimeMillis() - starTime)).append("\n");
+                        
                         // XCHange 2.0 Phoenix Translate Module (Output: document 1: output.get("left") & document 2: output.get("right")
                         System.out.println("Interpretando Similaridade...");
                         SimilarityTranslate similarityTranslate = new SimilarityTranslate();
@@ -271,13 +274,14 @@ public class Main {
                     }
 
                     long totalTime = System.currentTimeMillis() - starTime;
+                    timeFile.append(totalTime);
                     
                     BufferedWriter bw = new BufferedWriter(new FileWriter(saveFile));
                     bw.write(resultString.toString());
                     bw.close();
                     
                     bw = new BufferedWriter(new FileWriter(saveTimeFile));
-                    bw.write(String.valueOf(totalTime));
+                    bw.write(timeFile.toString());
                     bw.close();
 
                     System.out.println("Tempo de execução: "+ totalTime/1000.0 +" segundos\n");
