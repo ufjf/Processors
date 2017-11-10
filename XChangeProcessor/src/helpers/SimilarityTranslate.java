@@ -140,8 +140,14 @@ public class SimilarityTranslate {
                         newId2.appendChild(doc2.createTextNode(Integer.toString(this.ID)));
 
                         createXMLwithIDsNEWWWW(node, doc1, doc2, newE1, newE2, false);
-                    } else
-                        createXMLwithIDsNEWWWW(node, doc1, doc2, e1, e2, false);
+                    } else {
+                        if(node.getFirstChild().getNodeName().equals("diff:value"))
+                            createXMLwithIDsNEWWWW(node, doc1, doc2, e1, e2, false);
+                        else{
+                            copyToSide(node, doc1, e1, "left", first);
+                            copyToSide(node, doc2, e2, "right", first);
+                        }
+                    }
                 }
             }
         }
