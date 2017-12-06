@@ -29,7 +29,7 @@ public class TesteProcessor {
     public static void main(String[] args) {
         System.out.println("Rodando...");
         try{
-            int incremento = 25;
+            int incremento = 5;
             StringBuilder sb = new StringBuilder();
             sb.append("w1\tw2\tw3\tw4\tignore trivial similarities\taaron_pat casou certo?\tantczak_ashley casou errado?\t\n");
 
@@ -99,5 +99,27 @@ public class TesteProcessor {
             System.out.println("ERRO!");
         }
     }
+    
+    /*
+    Exemplo PROLOG
+    
+    match(NAME):-
+        employee(before,EMPLOYEEBefore),
+        employee(after,EMPLOYEEAfter),
+        xchangeid(EMPLOYEEBefore, _, XID),
+        xchangeid(EMPLOYEEAfter, _, XID),
+        name(EMPLOYEEBefore, _, NAME),
+        name(EMPLOYEEBefore, _, 'aaron_pat'),
+        name(EMPLOYEEAfter, _, 'aaron_patricia G.').
+
+    matchERRADO(NAME):-
+        employee(before,EMPLOYEEBefore),
+        employee(after,EMPLOYEEAfter),
+        xchangeid(EMPLOYEEBefore, _, XID),
+        xchangeid(EMPLOYEEAfter, _, XID),
+        name(EMPLOYEEBefore, _, NAME),
+        name(EMPLOYEEBefore, _, 'antczak_ashley g'),
+        name(EMPLOYEEAfter, _, NAMEAfter).
+    */
     
 }
