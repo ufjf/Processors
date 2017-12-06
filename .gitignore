@@ -16,6 +16,10 @@ XYDiffProcessor/nbproject/*
 !XYDiffProcessor/nbproject/project.properties
 !XYDiffProcessor/nbproject/project.xml
 
+TesteProcessor/nbproject/*
+!TesteProcessor/nbproject/project.properties
+!TesteProcessor/nbproject/project.xml
+
 #java specific
 *.class
 

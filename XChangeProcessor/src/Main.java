@@ -34,9 +34,9 @@ public class Main {
     
     private static String eachElementName = "employee";
     
-    private static String documentsPath = "C:/Users/alessandreia/Documents/Baltimore/";
-    private static String prologContextRulesPath = "C:/Users/alessandreia/Documents/Baltimore/prolog.txt";
-    private static String prologSimilarityRulesPath = "C:/Users/alessandreia/Documents/Baltimore/prologSim.txt"; 
+    private static String documentsPath;
+    private static String prologContextRulesPath = "prolog.txt";
+    private static String prologSimilarityRulesPath = "prologSim.txt"; 
     private static String prologRulesPath;
     
     /**
@@ -47,6 +47,11 @@ public class Main {
                             ignoreThresholdOnRoot = true,
                             allowDataTypeSimilarity = false;
 
+    public static double NAME_WEIGHT_HARD_DEFAULT = 0.25;
+    public static double ATTRIBUTE__WEIGHT_HARD_DEFAULT = 0.25;
+    public static double VALUE_WEIGHT_HARD_DEFAULT = 0.25;
+    public static double CHILDREN_WEIGHT_HARD_DEFAULT = 0.25;
+    
     private static String dateFormat = "eng";
 
     public static NaturalOrderComparator naturalOrderComparator = new NaturalOrderComparator();
@@ -55,16 +60,22 @@ public class Main {
 
         if  (args.length < 1) {
             args = new String[]{
-                "f1", // fragment
-                "false", //useSimilarity
-                "0", // argIndex
-                "0.0", //argThreshhold1
-                "1.0" //argThreshhold2
+                "/Users/matheus/Desktop/Alessandreia/", // Path
+                "true", //useSimilarity
+                "1", // argIndex
+                "0.90", //argThreshhold1
+                "0.90", //argThreshhold2
+                "0.24", //Name weight
+                "0.26", //Attribute Weight
+                "0.27", //Value weight
+                "0.28", //Children Weight
+                "true",  //ignoreTrivial
+                "true" //automaticAllocation
             };
             
         }
         
-        String fragment = args[0];
+        documentsPath = args[0];
         boolean useSimilarity = Boolean.parseBoolean(args[1]);
         int argIndex = Integer.parseInt(args[2]);
         double argThreshold1 = Double.parseDouble(args[3]);
@@ -74,21 +85,36 @@ public class Main {
         } else {
             argThreshold2 = Double.parseDouble(args[4]);
         }
-        
-        documentsPath = documentsPath + fragment;
-        
+        NAME_WEIGHT_HARD_DEFAULT = Double.parseDouble(args[5]);
+        ATTRIBUTE__WEIGHT_HARD_DEFAULT = Double.parseDouble(args[6]);
+        VALUE_WEIGHT_HARD_DEFAULT = Double.parseDouble(args[7]);
+        CHILDREN_WEIGHT_HARD_DEFAULT = Double.parseDouble(args[8]);
+        ignoreTrivial = Boolean.parseBoolean(args[9]);
+        automaticAllocation = Boolean.parseBoolean(args[10]);
+                        
         if (useSimilarity) {
-            prologRulesPath = prologSimilarityRulesPath;
+            prologRulesPath = documentsPath + prologSimilarityRulesPath;
         } else {
-            prologRulesPath = prologContextRulesPath;
+            prologRulesPath = documentsPath + prologContextRulesPath;
         }
-        
-        
+
         SettingsHelper.setIgnoreTrivialSimilarities(ignoreTrivial);
         SettingsHelper.setAutomaticWeightAllocation(automaticAllocation);
         SettingsHelper.setIgnoreThresholdOnRoot(ignoreThresholdOnRoot);
         SettingsHelper.setAllowDataTypeSimilarity(allowDataTypeSimilarity);
         SettingsHelper.setDateFormat(dateFormat);
+        SettingsHelper.setNameSimilarityWeight(NAME_WEIGHT_HARD_DEFAULT);
+        SettingsHelper.setAttributeSimilarityWeight(ATTRIBUTE__WEIGHT_HARD_DEFAULT);
+        SettingsHelper.setValueSimilarityWeight(VALUE_WEIGHT_HARD_DEFAULT);
+        SettingsHelper.setChildrenSimilarityWeight(CHILDREN_WEIGHT_HARD_DEFAULT);
+        
+        System.out.println("Name Weight: "+ SettingsHelper.getNameSimilarityWeight());
+        System.out.println("Attribute Weight: "+ SettingsHelper.getAttributeSimilarityWeight());
+        System.out.println("Value Weight: "+ SettingsHelper.getValueSimilarityWeight());
+        System.out.println("Children Weight: "+ SettingsHelper.getChildrenSimilarityWeight());
+        System.out.println("Ignore Trivial: "+ SettingsHelper.getIgnoreTrivialSimilarities());
+        System.out.println("Automatic Allocation: "+ SettingsHelper.getAutomaticWeightAllocation());
+        System.out.println("\n");
 
         try {
             // Reading Docs
@@ -203,7 +229,7 @@ public class Main {
                         // Phoenix Similarity
                         System.out.println("Calculando Similaridade(Threshold: "+SettingsHelper.getSimilarityThreshold()+")...");
                         String simDiff = doSimilarity(v1.getAbsolutePath(), v2.getAbsolutePath());
-
+                        System.out.println(simDiff);
                         timeFile.append((System.currentTimeMillis() - starTime)).append("\n");
                         
                         // XCHange 2.0 Phoenix Translate Module (Output: document 1: output.get("left") & document 2: output.get("right")
